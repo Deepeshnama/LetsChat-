@@ -43,7 +43,13 @@ const Loginpage=()=> {
 export default Loginpage
 
 //git init             --for frst time only
-// git add .
-//git checkout -b SheikhFaizan  ==for branch creation
-//git checkout SheikhFaizan == to enter branch
- // git add . == to push code //assigning it
+
+
+
+//git checkout -b SheikhFaizan                      ==for branch creation
+//git checkout SheikhFaizan                          == to enter branch
+// git add .                                       == to push code //assigning it // for specific folder
+//git commit -m "first"                             == first is commit
+ 
+// git push --set-upstream origin SheikhFaizan   // final step
+
