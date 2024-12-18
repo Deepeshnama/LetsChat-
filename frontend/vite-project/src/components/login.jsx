@@ -46,6 +46,7 @@ export default Loginpage
 
 
 
+
 //git checkout -b SheikhFaizan                      ==for branch creation
 //git checkout SheikhFaizan                          == to enter branch
 // git add .                                       == to push code //assigning it // for specific folder
@@ -53,3 +54,5 @@ export default Loginpage
  
 // git push --set-upstream origin SheikhFaizan   // final step
 
+
+// git pull origin main
