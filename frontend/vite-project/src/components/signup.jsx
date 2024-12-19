@@ -1,5 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
+import { Button } from "@chakra-ui/react"
+import { Input } from "@chakra-ui/react"
 
 
 let Signup=()=> {
@@ -29,19 +31,16 @@ let Signup=()=> {
          <form onSubmit={HandleSubmit}>
                <div className="login">
                      <label>Name</label><br/>
-                     <input type="text" required placeholder="name"  value={name}  onChange={(e)=>setName(e.target.value)}/> <br/>
-
-                     <label>Username</label> <br/>
-                     <input type="text"  required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}/> <br />
-
-                     <label>Email</label><br/>
-                     <input type="email" required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}/> <br/>
-
-                     <label>Password</label> <br/>
-                     <input type="password"  required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)} />
+                     <Input  placeholder="Name"  value={name}  onChange={(e)=>setName(e.target.value)}width={360}/> <br/>
+                     <label>Username*</label> <br/>
+                     <Input required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}width={360}/> <br />
+                     <label>Email*</label><br/>
+                     <Input required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}width={360}/> <br/>
+                     <label>Password*</label> <br/>
+                     <Input required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)}width={360} />  
                    </div>
                        <br />
-                  <button type="submit">SignUp</button>
+                  <Button type="submit"  >SignUp</Button>
              </form> 
        </div>
     )

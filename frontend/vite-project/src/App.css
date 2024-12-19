@@ -1,11 +1,15 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 5rem 100px;
+  
+  padding-top: ;
+  background-color: rgb(46, 48, 48)
   
 }
 .login{
  position: relative;
+ color: rgb(255, 245, 245);
 }
 
 body{
@@ -21,6 +25,11 @@ nav{
   border: 1px solid white;
   border-radius: 5px;
   color: aquamarine;
+  background-color: white;
+  color: black;
+  ov
+
+
 
 }
 

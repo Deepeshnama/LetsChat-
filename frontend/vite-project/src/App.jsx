@@ -1,36 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Loginpage from './components/login'
-import { Link } from 'react-router-dom'
-
-import { Route , Routes } from 'react-router-dom'
-import Signup from './components/signup'
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import React from 'react';
+import './App.css';
+import { Route, Routes, NavLink } from 'react-router-dom';
+import Loginpage from './components/login';
+import Signup from './components/signup';
+import { Box } from '@chakra-ui/react';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <div>
     
-      <nav>
-        {/* <Button colorScheme='blue'>Button</Button> */}
-         <Link className='lo' to="/login">Login</Link> 
-         <Link className='singo' to="/signup">SignUp</Link>
+      
+      <nav style={{ display: 'flex', gap: '20px', padding: '10px', backgroundColor: '#333' }}>
+        
+        <NavLink
+          to="/login"
+          style={({ isActive }) => ({
+            color: 'white',
+            textDecoration: isActive ? 'underline' : 'none',
+            padding: '10px 15px',
+            borderRadius: '5px',
+            backgroundColor: isActive ? '#555' : 'transparent',
+          })}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#444')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = e.currentTarget.style.textDecoration === 'underline' ? '#555' : 'transparent')}
+        >
+          Login
+        </NavLink>
+
+        
+        <NavLink
+          to="/signup"
+          style={({ isActive }) => ({
+            color: 'white',
+            textDecoration: isActive ? 'underline' : 'none',
+            padding: '10px 15px',
+            borderRadius: '5px',
+            backgroundColor: isActive ? '#555' : 'transparent',
+          })}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#444')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = e.currentTarget.style.textDecoration === 'underline' ? '#555' : 'transparent')}
+        >
+          SignUp
+        </NavLink>
       </nav>
 
-      <Routes>
-        <Route path='/login' element={<Loginpage/>}  />
-        <Route path='/signup' element={<Signup/>}  />
-      </Routes>
-
-      {/* <Loginpage/>
-      <Signup/> */}
-    </>
-  )
+      
+      <Box p={2}>
+        <Routes>
+          <Route path="/login" element={<Loginpage />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </Box>
+    </div>
+  );
 }
 
-
-export default App
+export default App;
