@@ -31,13 +31,13 @@ let Signup=()=> {
          <form onSubmit={HandleSubmit}>
                <div className="login">
                      <label>Name</label><br/>
-                     <Input  placeholder="Name"  value={name}  onChange={(e)=>setName(e.target.value)}/> <br/>
+                     <Input  placeholder="Name"  value={name}  onChange={(e)=>setName(e.target.value)}width={360}/> <br/>
                      <label>Username*</label> <br/>
-                     <Input required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}/> <br />
+                     <Input required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}width={360}/> <br />
                      <label>Email*</label><br/>
-                     <Input required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}/> <br/>
+                     <Input required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}width={360}/> <br/>
                      <label>Password*</label> <br/>
-                     <Input required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)} />  
+                     <Input required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)}width={360} />  
                    </div>
                        <br />
                   <Button type="submit"  >SignUp</Button>

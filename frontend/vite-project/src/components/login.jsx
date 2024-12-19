@@ -30,13 +30,14 @@ const Loginpage=()=> {
 
     return(
        <div className="container">
+        
             <form onSubmit={HandleSubmit}>
                     <div className="login">
                         <label>Email*</label> <br/>
-                        <Input required placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+                        <Input required placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)} width={360} />
                         <br/>
                         <label>Password*</label> <br/>
-                        <Input required placeholder="Enter your password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <Input required placeholder="Enter your password" value={password} onChange={(e)=>setPassword(e.target.value)} width={360} />
                         
                         
                        
