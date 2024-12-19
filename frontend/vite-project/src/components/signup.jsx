@@ -31,16 +31,16 @@ let Signup=()=> {
          <form onSubmit={HandleSubmit}>
                <div className="login">
                      <label>Name</label><br/>
-                     <Input  placeholder="Name"  value={name}  onChange={(e)=>setName(e.target.value)}width={360}/> <br/>
+                     <Input  placeholder="Name"  value={name}  onChange={(e)=>setName(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}}/> <br/>
                      <label>Username*</label> <br/>
-                     <Input required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}width={360}/> <br />
+                     <Input required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}}/> <br />
                      <label>Email*</label><br/>
-                     <Input required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}width={360}/> <br/>
+                     <Input required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}}/> <br/>
                      <label>Password*</label> <br/>
-                     <Input required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)}width={360} />  
+                     <Input required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}} />  
                    </div>
                        <br />
-                  <Button type="submit"  >SignUp</Button>
+                  <Button type="submit" style={{backgroundColor:"blue", color:'white'}} >SignUp</Button>
              </form> 
        </div>
     )
