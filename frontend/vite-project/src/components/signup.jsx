@@ -6,7 +6,7 @@ import { Input } from "@chakra-ui/react"
 
 let Signup=()=> {
       let [name , setName] = useState("")
-      let [pics, setpics] = useState(null)
+      let [username, setUsername] = useState(null)
       let [email, setEmail] = useState("")
    let [password, setPassword] = useState("")
    
@@ -14,13 +14,13 @@ let Signup=()=> {
    async function HandleSubmit(e) { 
      e.preventDefault()
       try {
-         await axios.post("https://firebasse-32aeb-default-rtdb.asia-southeast1.firebasedatabase.app/userDetails.json", { name,pics,email, password})
-         alert("sucess")
+         await axios.post("https://login-signup-ndpt.onrender.com/user/register", { name,username,email, password})
+         alert("success")
       } catch (error) {
          alert("error")
       }
       setName("")
-      // setUsername("")
+      setUsername("")
       setEmail("")
       setPassword("")
       setpics("")
@@ -41,7 +41,7 @@ let Signup=()=> {
                      <label>Name</label><br/>
                      <Input  placeholder="Name"  value={name}  onChange={(e)=>setName(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}}/> <br/>
                      
-         <label>Upload Profile Pic</label>
+         {/* <label>Upload Profile Pic</label>
 
          
           <label>Upload your Picture</label>
@@ -50,7 +50,9 @@ let Signup=()=> {
             p={1.5}
             accept="image/*"
             onChange={(e) =>setpics(e.target.files)}
-          />
+          /> */}
+          <label>User Name*</label><br/>
+          <Input required placeholder="Email"  value={username}  onChange={(e)=>setUsername(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}}/>
         
           {/* <Input
             type="file"
