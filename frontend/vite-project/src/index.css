@@ -5,7 +5,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: 'blue';
-  background-image: image('url('https://via.placeholder.com/1920x1080''); 
+  background-image: image('url('https://via.placeholder.com/1920x1080'');  }
 
 /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
