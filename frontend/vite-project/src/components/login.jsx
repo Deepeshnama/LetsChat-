@@ -34,17 +34,17 @@ const Loginpage=()=> {
             <form onSubmit={HandleSubmit}>
                     <div className="login">
                         <label>Email*</label> <br/>
-                        <Input required placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)} width={360} />
+                        <Input required placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)} width={360} style={{borderColor:'black', border:'2px solid black'}} />
                         <br/>
                         <label>Password*</label> <br/>
-                        <Input required placeholder="Enter your password" value={password} onChange={(e)=>setPassword(e.target.value)} width={360} />
+                        <Input required placeholder="Enter your password" value={password} onChange={(e)=>setPassword(e.target.value)} width={360} style={{borderColor:'black', border:'2px solid black'}}/>
                         
                         
                        
                         
                      </div>
                         <br />
-                        <Button type="submit"  >Login</Button>
+                        <Button type="submit" style={{backgroundColor:"blue", color:'white'}} >Login</Button>
 
                     
             </form>
