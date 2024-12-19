@@ -1,5 +1,9 @@
 import { useState } from "react"
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button } from "@chakra-ui/react"
+import { Input } from "@chakra-ui/react"
+
+
+
 import axios from "axios"
 
 const Loginpage=()=> {
@@ -8,10 +12,10 @@ const Loginpage=()=> {
     
     async function HandleSubmit(e) { 
         e.preventDefault()
-        console.log( "Email" , email)
-        console.log(password)
+        console.log( "Email: " , email)
+        console.log("Password: ",password)
         try {
-            await axios.post("https://firebasse-32aeb-default-rtdb.asia-southeast1.firebasedatabase.app/userDetails.json", {email, password}) 
+            await axios.post("https://login-signup-ndpt.onrender.com/user/login", {email, password}) 
                    alert("Data saved successfully")
         } catch (error) {
               alert("error")
@@ -26,15 +30,23 @@ const Loginpage=()=> {
 
     return(
        <div className="container">
+        
             <form onSubmit={HandleSubmit}>
                     <div className="login">
-                        <label>Email</label><br/>
-                        <input type="email" required placeholder="Email"  value={email} onChange={(e)=>setEmail(e.target.value)} /> <br/>
-                        <label>Password</label> <br/>
-                        <input type="password"  required placeholder="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <label>Email*</label> <br/>
+                        <Input required placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)} width={360} style={{borderColor:'black', border:'2px solid black'}} />
+                        <br/>
+                        <label>Password*</label> <br/>
+                        <Input required placeholder="Enter your password" value={password} onChange={(e)=>setPassword(e.target.value)} width={360} style={{borderColor:'black', border:'2px solid black'}}/>
+                        
+                        
+                       
+                        
                      </div>
                         <br />
-                    <button type="submit" >++Login++</button>
+                        <Button type="submit" style={{backgroundColor:"blue", color:'white'}} >Login</Button>
+
+                    
             </form>
        </div>
     )
