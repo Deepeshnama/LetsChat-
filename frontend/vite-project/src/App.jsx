@@ -48,18 +48,17 @@ function App() {
         >
           SignUp
         </NavLink>
-
+          
         {/* <Link to="/dashboard"> </Link> */}
       </nav>
-
+      <Link to="/">Logout</Link>
       
       <Box p={2}>
-        <Routes>
-          <Route path="/" element={token ? <Navigate to ="/dashboard" /> : <Loginpage/> } />
-          <Route path="/signup" element={token ? <Navigate to="/dashboard"/> : <Signup />} />
-          <Route path="/dashboard" element={token ? <Dashboard/>: <Navigate to="/" /> } />
-
-
+      <Routes>
+          
+          <Route path="/" element={<Loginpage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Box>
     </div>
