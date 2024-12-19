@@ -8,11 +8,11 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <ChakraProvider> */}
+    <ChakraProvider>
         <BrowserRouter>
         <App />
         </BrowserRouter>
-    {/* </ChakraProvider> */}
+    </ChakraProvider>
 
    
   </StrictMode>,
