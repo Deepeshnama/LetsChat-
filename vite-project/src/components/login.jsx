@@ -47,8 +47,8 @@ export default Loginpage
 
 
 
-//git checkout -b SheikhFaizan                      ==for branch creation
-//git checkout SheikhFaizan                          == to enter branch
+//git checkout -b Faizan                      ==for branch creation
+//git checkout SheikhFaizan    git                       == to enter branch
 // git add .                                       == to push code //assigning it // for specific folder
 //git commit -m "first"                             == first is commit
  
