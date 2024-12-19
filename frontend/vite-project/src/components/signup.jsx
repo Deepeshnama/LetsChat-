@@ -4,7 +4,7 @@ import axios from "axios"
 
 let Signup=()=> {
       let [name , setName] = useState("")
-      let [username, setUsername] = useState("")
+      let [pics, setpics] = useState(null)
       let [email, setEmail] = useState("")
    let [password, setPassword] = useState("")
    
@@ -12,7 +12,7 @@ let Signup=()=> {
    async function HandleSubmit(e) { 
      e.preventDefault()
       try {
-         await axios.post("https://firebasse-32aeb-default-rtdb.asia-southeast1.firebasedatabase.app/userDetails.json", { name, username,email, password})
+         await axios.post("https://firebasse-32aeb-default-rtdb.asia-southeast1.firebasedatabase.app/userDetails.json", { name,pics,email, password})
          alert("sucess")
       } catch (error) {
          alert("error")
@@ -29,16 +29,30 @@ let Signup=()=> {
          <form onSubmit={HandleSubmit}>
                <div className="login">
                      <label>Name</label><br/>
-                     <input type="text" required placeholder="name"  value={name}  onChange={(e)=>setName(e.target.value)}/> <br/>
+                     <Input  placeholder="Name"  value={name}  onChange={(e)=>setName(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}}/> <br/>
+                     
+         <label>Upload Profile Pic</label>
 
-                     <label>Username</label> <br/>
-                     <input type="text"  required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}/> <br />
-
-                     <label>Email</label><br/>
-                     <input type="email" required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}/> <br/>
-
-                     <label>Password</label> <br/>
-                     <input type="password"  required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)} />
+         
+          <label>Upload your Picture</label>
+          <Input
+            type="file"
+            p={1.5}
+            accept="image/*"
+            onChange={(e) =>setpics(e.target.files)}
+          />
+        
+          {/* <Input
+            type="file"
+            p={1.5}
+            accept="image/*"
+            onChange={(e) => setPic(e.target.files)} value={pic} style={{borderColor:'black', border:'2px solid black'}}
+          /> */}
+         <br />
+                     <label>Email*</label><br/>
+                     <Input required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}}/> <br/>
+                     <label>Password*</label> <br/>
+                     <Input required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)}width={360} style={{borderColor:'black', border:'2px solid black'}} />  
                    </div>
                        <br />
                   <button type="submit">SignUp</button>
