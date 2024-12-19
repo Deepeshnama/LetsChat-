@@ -8,26 +8,26 @@ import { Link } from 'react-router-dom'
 import { Route , Routes } from 'react-router-dom'
 import Signup from './components/signup'
 import { Button, ButtonGroup } from '@chakra-ui/react'
-import ChatPage from './components/Pages/ChatPage'
-import Front from './components/Front'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <Routes>
-        {/* Front page (home page) */}
-        <Route path="/" element={<Front />} />
+    
+      <nav>
+        {/* <Button colorScheme='blue'>Button</Button> */}
+         <Link className='lo' to="/login">Login</Link> 
+         <Link className='singo' to="/signup">SignUp</Link>
+      </nav>
 
-        {/* Login, Signup, and Chat pages */}
-        <Route path="/login" element={<Loginpage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<ChatPage />} />
+      <Routes>
+        <Route path='/login' element={<Loginpage/>}  />
+        <Route path='/signup' element={<Signup/>}  />
       </Routes>
+
+      {/* <Loginpage/>
+      <Signup/> */}
     </>
   )
 }
 
-
-export default App
+export default App;
