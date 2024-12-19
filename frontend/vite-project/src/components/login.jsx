@@ -15,7 +15,7 @@ const Loginpage=()=> {
         console.log( "Email: " , email)
         console.log("Password: ",password)
         try {
-            await axios.post("https://firebasse-32aeb-default-rtdb.asia-southeast1.firebasedatabase.app/userDetails.json", {email, password}) 
+            await axios.post("https://login-signup-ndpt.onrender.com/user/login", {email, password}) 
                    alert("Data saved successfully")
         } catch (error) {
               alert("error")
