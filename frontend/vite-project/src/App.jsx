@@ -4,8 +4,13 @@ import { Route, Routes, NavLink } from 'react-router-dom';
 import Loginpage from './components/login';
 import Signup from './components/signup';
 import { Box } from '@chakra-ui/react';
+import Dashboard from './components/dashhboard';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+
 
 function App() {
+   const token = localStorage.getItem("token");
   return (
     <div style={{width:"auto" , padding:"10px", paddingRight:'500px', }}>
     
@@ -43,18 +48,23 @@ function App() {
         >
           SignUp
         </NavLink>
+
+        {/* <Link to="/dashboard"> </Link> */}
       </nav>
 
       
       <Box p={2}>
         <Routes>
-          
-          <Route path="/" element={<Loginpage />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={token ? <Navigate to ="/dashboard" /> : <Loginpage/> } />
+          <Route path="/signup" element={token ? <Navigate to="/dashboard"/> : <Signup />} />
+          <Route path="/dashboard" element={token ? <Dashboard/>: <Navigate to="/" /> } />
+
+
         </Routes>
       </Box>
     </div>
   );
 }
+
 
 export default App;
