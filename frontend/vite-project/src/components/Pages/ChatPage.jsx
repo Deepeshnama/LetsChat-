@@ -18,6 +18,7 @@ const ChatPage = () => {
         <MyChats />
         
         <ChatBox />
+        
       </Box>
     </Box>
   )
