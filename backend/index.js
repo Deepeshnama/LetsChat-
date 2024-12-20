@@ -1,10 +1,12 @@
 import express from "express";
 import db from "./database/db.js";
-import userRouter from "./routes/user.routes.js";
 import "dotenv/config";
 import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
+import userRouter from "./routes/user.routes.js";
+import chatRouter from "./routes/chat.routes.js";
+import groupRouter from "./routes/group.routes.js";
 
 const app = express();
 
@@ -42,6 +44,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRouter);
+app.use("/chat", chatRouter)
+app.use("/group" , groupRouter)
 
 httpServer.listen(7800, () => {
   db();
