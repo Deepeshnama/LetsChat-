@@ -5,9 +5,9 @@ import generateToken from "../util/generateToken.js";
 
 const register = async (req, res) => {
   try {
-    const { userName, email, password, role } = req.body;
+    const {name , userName, email, password} = req.body;
 
-    if (!userName || !email || !password || !role) {
+    if (!name || !userName || !email || !password) {
       res.status(400).json({
         msg: "Invalid Credentials",
       });
@@ -21,10 +21,10 @@ const register = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const newUser = await User.create({
+        name ,
         userName,
         email,
-        password: hashedPassword,
-        role,
+        password: hashedPassword
       });
 
       res.status(201).json({
@@ -77,4 +77,16 @@ const login = async (req, res) => {
   }
 };
 
-export { register, login };
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find(); 
+    res.status(200).json(users); 
+  } catch (error) {
+    res.status(500).json({ message: error.message }); 
+  }
+};
+
+
+
+
+export { register, login , getAllUsers };

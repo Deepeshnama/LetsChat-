@@ -1,4 +1,5 @@
 import { useState } from "react";
+ Ashfaq
 import { 
   Button, 
   Input, 
@@ -55,6 +56,48 @@ const Loginpage = () => {
         duration: 3000,
         isClosable: true,
       });
+=======
+import { Button } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
+// import useHistory from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
+const Loginpage = () => {
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [loading, setLoading] = useState(false);
+  let [error, setError] = useState("");
+
+  let navigate = useNavigate();
+
+  async function HandleSubmit(e) {
+    e.preventDefault();
+    console.log("Email: ", email);
+    console.log("Password: ", password);
+    try {
+      setLoading(true);
+      setError("");
+
+      let response = await axios.post(
+        "https://login-signup-ndpt.onrender.com/user/login",
+        { email, password }
+      );
+      console.log(response);
+      if (response.status == 200) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        navigate("/dashboard");
+        alert("sucessful logged in");
+      }
+
+      alert("Data saved successfully");
+    } catch (error) {
+      setError("Inavlid");
+
+      alert("error while logging in");
+ main
     } finally {
       setLoading(false);
     }
@@ -63,6 +106,7 @@ const Loginpage = () => {
   }
 
   return (
+ Ashfaq
     <Container maxW="md" py={10}>
       <Box
         p={8}
@@ -123,3 +167,5 @@ const Loginpage = () => {
 };
 
 export default Loginpage;
+
+
