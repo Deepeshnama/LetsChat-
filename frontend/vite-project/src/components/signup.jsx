@@ -1,50 +1,103 @@
-import { useState } from "react"
-import axios from "axios"
+import { useState } from "react";
 
+let Signup = () => {
+  let [name, setName] = useState("");
+  let [userName, setUsername] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
 
-let Signup=()=> {
-      let [name , setName] = useState("")
-      let [username, setUsername] = useState("")
-      let [email, setEmail] = useState("")
-   let [password, setPassword] = useState("")
-   
+  async function HandleSubmit(e) {
+    e.preventDefault();
 
-   async function HandleSubmit(e) { 
-     e.preventDefault()
-      try {
-         await axios.post("https://firebasse-32aeb-default-rtdb.asia-southeast1.firebasedatabase.app/userDetails.json", { name, username,email, password})
-         alert("sucess")
-      } catch (error) {
-         alert("error")
+    console.log("Form Data:", { name, userName, email, password });
+
+    try {
+      const response = await fetch(
+        "https://login-signup-ndpt.onrender.com/user/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, userName, email, password }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        alert("Success: " + (data.message || "User registered successfully"));
+
+        // Clear form inputs
+        setName("");
+        setUsername("");
+        setEmail("");
+        setPassword("");
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to register");
       }
-      setName("")
-      setUsername("")
-      setEmail("")
-      setPassword("")
-      
-   }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("Error: " + error.message);
+    }
+  }
 
-    return(
-       <div className="container">
-         <form onSubmit={HandleSubmit}>
-               <div className="login">
-                     <label>Name</label><br/>
-                     <input type="text" required placeholder="name"  value={name}  onChange={(e)=>setName(e.target.value)}/> <br/>
+  return (
+    <div className="container">
+      <form onSubmit={HandleSubmit}>
+        <div className="login">
+          <label htmlFor="name">Name</label>
+          <br />
+          <input
+            id="name"
+            type="text"
+            required
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <br />
 
-                     <label>Username</label> <br/>
-                     <input type="text"  required placeholder="Username"  value={username}  onChange={(e)=>setUsername(e.target.value)}/> <br />
+          <label htmlFor="username">Username</label>
+          <br />
+          <input
+            id="username"
+            type="text"
+            required
+            placeholder="Username"
+            value={userName}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <br />
 
-                     <label>Email</label><br/>
-                     <input type="email" required placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}/> <br/>
+          <label htmlFor="email">Email</label>
+          <br />
+          <input
+            id="email"
+            type="email"
+            required
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
 
-                     <label>Password</label> <br/>
-                     <input type="password"  required placeholder="password" value={password}  onChange={(e)=>setPassword(e.target.value)} />
-                   </div>
-                       <br />
-                  <button type="submit">SignUp</button>
-             </form> 
-       </div>
-    )
-}
+          <label htmlFor="password">Password</label>
+          <br />
+          <input
+            id="password"
+            type="password"
+            required
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <br />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  );
+};
 
-export default Signup
+export default Signup;

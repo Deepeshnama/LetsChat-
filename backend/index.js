@@ -3,8 +3,9 @@ import db from "./database/db.js"
 import userRouter from "./routes/user.routes.js"
 import "dotenv/config"
 import cors from "cors"
+import User from "./models/user.model.js"
 
-const app = express()
+const app = express();
 
 // for connecting backend and frontend
 
@@ -15,9 +16,24 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
-
+app.use(cors());
+app.get('/user/' ,async (req, res) =>{
+    try {
+        const data = await User.find();
+        res.json(data);
+    } catch (error) {
+        console.log(error)
+    }
+})
 app.use(express.json())
-
+app.get('/user/', async(req, res) =>{
+    try {
+        const data = await User.find();
+        res.json(data);
+    } catch (error) {
+       console.log(error) 
+    }
+})
 app.use("/user" , userRouter)
 
 app.listen(7800, () => {
