@@ -1,70 +1,61 @@
 import React from 'react';
-import './App.css';
-import { Route, Routes, NavLink } from 'react-router-dom';
+import { Route, Routes, NavLink, useLocation } from 'react-router-dom';
 import Loginpage from './components/login';
 import Signup from './components/signup';
-import { Box } from '@chakra-ui/react';
-import Dashboard from './components/dashhboard';
-import { Link } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
-
+import { Box, Button, HStack } from '@chakra-ui/react';
+import ChatPage from './components/Pages/ChatPage';
+import ThemeToggle from './components/ThemeToggle'; // Import the theme toggle
 
 function App() {
-   const token = localStorage.getItem("token");
+  const location = useLocation();
+  const token = localStorage.getItem("token");
+
+  const authPaths = ['/', '/signup'];
+  const isAuthPage = authPaths.includes(location.pathname);
+
   return (
-    <div style={{width:"auto" , padding:"10px", paddingRight:'500px', }}>
-    
-      
-      <nav style={{ display: 'flex', gap: '20px', padding: '10px', backgroundColor: '#333', borderRadius:'10px' }}>
-        
-        <NavLink
-          to="/"
-          style={({ isActive }) => ({
-            color: 'white',
-            textDecoration: isActive ? 'underline' : 'none',
-            padding: '10px 15px',
-            borderRadius: '5px',
-            backgroundColor: isActive ? '#555' : 'transparent',
-            
-          })}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#444')}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = e.currentTarget.style.textDecoration === 'underline' ? '#555' : 'transparent')}
-        >
-          Login
-        </NavLink>
+    <div style={{ width: "auto", padding: "10px" }}>
+      {/* Header Section */}
+      {!isAuthPage && (
+        <HStack spacing={4} mb={4} justifyContent="flex-end">
+          <ThemeToggle /> {/* Add Dark Mode Toggle */}
+        </HStack>
+      )}
 
-        
-        <NavLink
-          to="/signup"
-          style={({ isActive }) => ({
-            color: 'white',
-            textDecoration: isActive ? 'underline' : 'none',
-            padding: '10px 15px',
-            borderRadius: '5px',
-            backgroundColor: isActive ? '#555' : 'transparent',
-          })}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#444')}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = e.currentTarget.style.textDecoration === 'underline' ? '#555' : 'transparent')}
-        >
-          SignUp
-        </NavLink>
+      {/* Auth Navigation */}
+      {isAuthPage && (
+        <HStack spacing={4} mb={4} justifyContent="center">
+          <Button
+            as={NavLink}
+            to="/"
+            colorScheme="blue"
+            variant={location.pathname === "/" ? "solid" : "outline"}
+            size="md"
+          >
+            Login
+          </Button>
+          <Button
+            as={NavLink}
+            to="/signup"
+            colorScheme="blue"
+            variant={location.pathname === "/signup" ? "solid" : "outline"}
+            size="md"
+          >
+            SignUp
+          </Button>
+        </HStack>
+      )}
 
-        {/* <Link to="/dashboard"> </Link> */}
-      </nav>
-
-      
+      {/* Main Content */}
       <Box p={2}>
         <Routes>
-          <Route path="/" element={token ? <Navigate to ="/dashboard" /> : <Loginpage/> } />
-          <Route path="/signup" element={token ? <Navigate to="/dashboard"/> : <Signup />} />
-          <Route path="/dashboard" element={token ? <Dashboard/>: <Navigate to="/" /> } />
-
-
+          <Route path="/" element={<Loginpage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<ChatPage />} />
         </Routes>
       </Box>
     </div>
   );
 }
-
 
 export default App;
