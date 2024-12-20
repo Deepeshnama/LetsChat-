@@ -29,7 +29,7 @@ const MyChats = () => {
         <GroupChatModal>
           <Button
             d="flex"
-            marginLeft='45px'
+            marginLeft='15px'
             fontSize={{ base: "17px", md: "10px", lg: "15px" }}
             rightIcon={<AddIcon />}
           >
