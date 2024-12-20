@@ -17,9 +17,11 @@ import {
   ModalContent, 
   ModalCloseButton
 } from '@chakra-ui/react';
+import { useUser } from '../../Context/UserContext';
 
-const ProfileModal = ({ user, children }) => {
+const ProfileModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user } = useUser();
 
   return (
     <>
@@ -34,17 +36,16 @@ const ProfileModal = ({ user, children }) => {
       )}
       <Modal size="md" isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent >
+        <ModalContent>
           <ModalHeader
             fontSize="30px"
             fontFamily="Work sans"
             textAlign="center"
           >
-            GUEST USER
+            {user?.name || 'Loading...'}
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {/* Wrapper Box for Centering */}
             <Box 
               display="flex" 
               flexDirection="column" 
@@ -52,8 +53,8 @@ const ProfileModal = ({ user, children }) => {
               justifyContent="center"
             >
               <Image
-                src="https://bit.ly/dan-abramov"
-                alt="Dan Abramov"
+                src={'https://bit.ly/dan-abramov'}
+               
                 borderRadius="full"
                 boxSize="120px"
               />
@@ -62,7 +63,7 @@ const ProfileModal = ({ user, children }) => {
                 fontFamily="Work sans"
                 mt={4}
               >
-                Email: guest@gmail.com
+                Email: {user?.email || 'Loading...'}
               </Text>
             </Box>
           </ModalBody>

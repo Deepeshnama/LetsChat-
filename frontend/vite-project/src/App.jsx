@@ -9,14 +9,15 @@ function App() {
   const location = useLocation();
   const token = localStorage.getItem("token");
   
-  
+  // Array of paths where navigation should be visible
   const authPaths = ['/', '/signup'];
   
- 
+  // Check if current path is a login/signup page
   const isAuthPage = authPaths.includes(location.pathname);
 
   return (
     <div style={{ width: "auto", padding: "10px" }}>
+      {/* Render navigation only on auth pages */}
       {isAuthPage && (
         <HStack spacing={4} mb={4} justifyContent="center">
           <Button

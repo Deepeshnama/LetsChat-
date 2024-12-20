@@ -16,6 +16,7 @@ const ChatPage = () => {
         padding="10px"
       >
         <MyChats />
+        
         <ChatBox />
       </Box>
     </Box>

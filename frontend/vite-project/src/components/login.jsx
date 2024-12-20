@@ -45,6 +45,7 @@ const Loginpage = () => {
         });
         
         navigate("/dashboard");
+        console.log(token)
       }
     } catch (error) {
       setError("Invalid email or password");
