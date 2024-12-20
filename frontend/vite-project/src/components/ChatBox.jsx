@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import '../components/styles.css';
+
 const Chatbox = () => {
   return (
     <Box

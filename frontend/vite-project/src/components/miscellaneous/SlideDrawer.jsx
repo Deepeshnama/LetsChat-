@@ -35,7 +35,7 @@ const SlideDrawer = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
-    navigate('/login');
+    navigate('/');
   };
 const toast=useToast();
   const handleSearch=()=>{
