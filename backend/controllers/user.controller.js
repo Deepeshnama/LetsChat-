@@ -99,4 +99,26 @@ const searchUser = async (req, res) => {
   }
 };
 
-export { register, login, getAllUsers , searchUser };
+const searchUserByNameorEmail = async (req, res) => {
+  try {
+    const { name, email } = req.query;
+
+    const filterData = {};
+
+    if (name) {
+      filterData.name = name;
+    }
+
+    if (email) {
+      filterData.email = email;
+    }
+
+    const user = await User.find(filterData);
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+export { register, login, getAllUsers, searchUser , searchUserByNameorEmail };
