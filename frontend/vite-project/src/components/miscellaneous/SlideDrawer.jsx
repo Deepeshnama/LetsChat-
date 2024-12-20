@@ -19,37 +19,60 @@ import {
   useDisclosure,
   Box,
   Input,
-  position,
   useToast,
+  useColorMode,
+  IconButton,
 } from '@chakra-ui/react';
-import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { BellIcon, ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 import ProfileModal from '../miscellaneous/ProfileModal';
 import ChatLoading from '../ChatLoading';
 import UserListItem from '../useAvtar/UserListItem';
+import axios from 'axios';
 
 const SlideDrawer = () => {
-  const [search,setSearch]=useState("")
-  const[loading,setLoading]=useState(false)
+  const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState([]); // Store users found in search
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();  // Chakra UI hook for managing drawer state
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();  // Hook for handling dark/light theme
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
     navigate('/');
   };
-const toast=useToast();
-  const handleSearch=()=>{
-if(!search){
-toast({
-  title:'Please Enter something in search',
-  status:'warning',
-  duration:5000,
-isClosable:true,
-position:'top-left'
 
-})
-}
-  }
+  const toast = useToast();
+
+  const handleSearch = async () => {
+    if (!search) {
+      toast({
+        title: 'Please Enter something in search',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-left',
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Request to search by name or email
+      const { data } = await axios.get(
+        `https://login-signup-ndpt.onrender.com/user/search?name=${search}`
+      );
+      
+      // Append new results to the existing users list
+      setUsers((prevUsers) => [...prevUsers, ...data]);  // Append new results
+
+    } catch (error) {
+      console.error('Error fetching search results', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -83,8 +106,17 @@ position:'top-left'
             <MenuButton p={1}>
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
-            {/* Add MenuList for notifications if needed */}
           </Menu>
+
+          {/* Theme Toggle Button */}
+          <IconButton
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            onClick={toggleColorMode}
+            aria-label="Toggle theme"
+            variant="ghost"
+            isRound
+            size="md"
+          />
 
           {/* Profile */}
           <Menu>
@@ -108,24 +140,21 @@ position:'top-left'
       </Flex>
 
       {/* Drawer for Search Users */}
-      <Drawer placement='left' isOpen={isOpen} onClose={onClose}>
+      <Drawer placement="left" isOpen={isOpen} onClose={onClose}>
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerHeader borderBottomWidth='1px'>Search Users</DrawerHeader>
+            <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
             <DrawerBody>
-             <Box display='flex' pb={2}>
-              <Input
-              placeholder='Search by name or email'
-              mr={2}
-              value={search}
-              onChange={(e)=>setSearch(e.target.value)}
-              />
-              <Button 
-             onClick={handleSearch}>Go</Button>
-             </Box>
-             {loading ?
-             (<ChatLoading/>):
-             (<UserListItem/>)}
+              <Box display="flex" pb={2}>
+                <Input
+                  placeholder="Search by name or email"
+                  mr={2}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <Button onClick={handleSearch}>Go</Button>
+              </Box>
+              {loading ? <ChatLoading /> : <UserListItem users={users} handleFunction={() => {}} />}
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>

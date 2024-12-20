@@ -1,29 +1,23 @@
- Ashfaq
 import React from 'react';
 import { Route, Routes, NavLink, useLocation } from 'react-router-dom';
 import Loginpage from './components/login';
 import Signup from './components/signup';
 import { Box, Button, HStack } from '@chakra-ui/react';
 import ChatPage from './components/Pages/ChatPage';
-import ThemeToggle from './components/ThemeToggle'; // Import the theme toggle
 
 function App() {
   const location = useLocation();
   const token = localStorage.getItem("token");
-
+  
+  // Array of paths where navigation should be visible
   const authPaths = ['/', '/signup'];
+  
+  // Check if current path is a login/signup page
   const isAuthPage = authPaths.includes(location.pathname);
 
   return (
     <div style={{ width: "auto", padding: "10px" }}>
-      {/* Header Section */}
-      {!isAuthPage && (
-        <HStack spacing={4} mb={4} justifyContent="flex-end">
-          <ThemeToggle /> {/* Add Dark Mode Toggle */}
-        </HStack>
-      )}
-
-      {/* Auth Navigation */}
+      {/* Render navigation only on auth pages */}
       {isAuthPage && (
         <HStack spacing={4} mb={4} justifyContent="center">
           <Button
@@ -35,6 +29,7 @@ function App() {
           >
             Login
           </Button>
+          
           <Button
             as={NavLink}
             to="/signup"
@@ -47,9 +42,6 @@ function App() {
         </HStack>
       )}
 
-      {/* Main Content */}
-
- main
       <Box p={2}>
         <Routes>
           <Route path="/" element={<Loginpage />} />
