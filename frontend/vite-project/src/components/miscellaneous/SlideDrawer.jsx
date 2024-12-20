@@ -31,7 +31,7 @@ const SlideDrawer = () => {
   const [search,setSearch]=useState("")
   const[loading,setLoading]=useState(false)
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();  // Chakra UI hook for managing drawer state
+  const { isOpen, onOpen, onClose } = useDisclosure(); 
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
